@@ -114,9 +114,9 @@ void MX_TIM3_Init(void)
   TIM_MasterConfigTypeDef sMasterConfig = {0};
 
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 0;
+  htim3.Init.Prescaler = 3;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 0;
+  htim3.Init.Period = 999;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -187,15 +187,15 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
     */
     GPIO_InitStruct.Pin = M4_Pin|M3_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF2_TIM1;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     GPIO_InitStruct.Pin = M2_Pin|M1_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
@@ -237,7 +237,17 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 } 
 
 /* USER CODE BEGIN 1 */
-uint8_t Count_1ms,Count_2ms,Count_4ms;
+uint8_t Count_1ms,Count_2ms,Count_4ms,Count_100ms;
+uint32_t lastGetStickTime,lastGetAppTime;
+
+void TIM1_Init(void)
+{
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);// Enable the PWM Channel 1
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);// Enable the PWM Channel 2
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);// Enable the PWM Channel 3
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);// Enable the PWM Channel 4
+}
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)//Timer3�ж�
 {	
 	if (htim->Instance == htim3.Instance)
@@ -247,6 +257,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)//Timer3�ж�
 		Count_1ms++;
 		Count_2ms++;
 		Count_4ms++;
+		Count_100ms++;
 	}
 }
 /* USER CODE END 1 */

@@ -37,7 +37,8 @@ extern TIM_HandleTypeDef htim3;
 extern uint8_t Bsp_Int_Ok;
 extern uint32_t Timer3_Count;
 extern uint16_t Timer3_Frequency;
-extern uint8_t Count_1ms,Count_2ms,Count_4ms;
+extern uint8_t Count_1ms,Count_2ms,Count_4ms,Count_100ms;
+extern uint32_t lastGetStickTime,lastGetAppTime;
 /* USER CODE END Private defines */
 
 void MX_TIM1_Init(void);
@@ -46,7 +47,7 @@ void MX_TIM3_Init(void);
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
                     
 /* USER CODE BEGIN Prototypes */
-
+void TIM1_Init(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

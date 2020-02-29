@@ -34,6 +34,7 @@ DMA_HandleTypeDef hdma_adc1;
 /* ADC1 init function */
 void MX_ADC1_Init(void)
 {
+  ADC_AnalogWDGConfTypeDef AnalogWDGConfig = {0};
   ADC_ChannelConfTypeDef sConfig = {0};
 
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
@@ -58,6 +59,13 @@ void MX_ADC1_Init(void)
   hadc1.Init.OversamplingMode = DISABLE;
   hadc1.Init.TriggerFrequencyMode = ADC_TRIGGER_FREQ_HIGH;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure Analog WatchDog 2 
+  */
+  AnalogWDGConfig.WatchdogMode = ADC_ANALOGWATCHDOG_SINGLE_REG;
+  if (HAL_ADC_AnalogWDGConfig(&hadc1, &AnalogWDGConfig) != HAL_OK)
   {
     Error_Handler();
   }
@@ -154,9 +162,9 @@ void ADC1_Init(void)
 void Voltage_Printf(void)
 {
 	Battery = (uint16_t)(2.0f*ADC_Value[0]/ADC_Value[1]*1.2f*100);
-	PrintString("\r\n��ǰ��ص�ѹֵһ�ٱ��� ");
+	/*PrintString("\r\n��ǰ��ص�ѹֵһ�ٱ��� ");
 	PrintU16(Battery); 
-	PrintString("V");
+	PrintString("V");*/
 }
 /* USER CODE END 1 */
 

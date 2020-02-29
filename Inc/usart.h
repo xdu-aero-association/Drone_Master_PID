@@ -39,6 +39,7 @@ extern UART_HandleTypeDef huart2;
 void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+/*
 void PrintHexU8(uint8_t data);
 void PrintHexS16(int16_t num);
 void PrintS8( int8_t num);
@@ -46,6 +47,7 @@ void PrintU8(uint8_t num);
 void PrintS16( int16_t num);
 void PrintU16(uint16_t num);
 void PrintString(uint8_t *s);
+*/
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

@@ -26,8 +26,8 @@ float q0 = 1, q1 = 0, q2 = 0, q3 = 0;     	// 四元数
 float exInt = 0, eyInt = 0, ezInt = 0;    	// 误差积分累计值 
 // ==================================================================================
 // 函数原型：void IMUupdate(float gx, float gy, float gz, float ax, float ay, float az) 
-// 功        能：互补滤波进行姿态解算
-// 输        入：陀螺仪数据及加速度计数据
+// 功    能：互补滤波进行姿态解算
+// 输    入：陀螺仪数据及加速度计数据
 // ==================================================================================
 void IMUupdate(float gx, float gy, float gz, float ax, float ay, float az) 
 {

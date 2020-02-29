@@ -24,8 +24,8 @@
 uint8_t TxCount=0;
 uint8_t Count=0;
 
-static uint8_t TxBuff[256];	//���ڷ��ͻ�����
-static uint8_t RxBuffer[50];//���ڽ��ջ�����
+//static uint8_t TxBuff[256];	//串口发送缓冲区
+//static uint8_t RxBuffer[50];//串口接收缓冲区
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart2;
@@ -112,6 +112,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 } 
 
 /* USER CODE BEGIN 1 */
+/*
 //��HEX����ʽ���U8������
 void PrintHexU8(uint8_t data)
 {
@@ -206,6 +207,7 @@ void PrintString(uint8_t *s)
 		p++;
 	}
 }
+*/
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

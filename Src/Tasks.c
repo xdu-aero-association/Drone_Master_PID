@@ -10,6 +10,7 @@
 #include "Maths.h"
 #include "Filter.h"
 #include "Control.h"
+#include "Advanced.h"
 #include "struct_all.h"
 
 uint8_t Bsp_Int_Ok = 0;
@@ -21,9 +22,8 @@ uint8_t Bsp_Int_Ok = 0;
 void BSP_Int(void)
 {
 	LED_ON_OFF();//LED闪烁
-	
+	TIM1_Init();//TIM1四个通道的PWM初始化
 	ADC1_Init();//ADC及DMA初始化
-	
 	//这里加入蓝牙串口通讯
 
 	while( InitMPU6050()!=1 );//若MPU6050初始化不成功，则程序不向下运行
@@ -72,4 +72,12 @@ void Task_250HZ(void)
 	Get_Eulerian_Angle(&out_angle);//四元数转欧拉角
 	Control_Angle(&out_angle,&Rc);//外环控制
 }
-			
+
+/******************************************************************************
+函数原型：	void Task_10HZ(void)
+功    能：	主循环中运行频率为10HZ任务
+*******************************************************************************/ 
+void Task_10HZ(void)
+{
+	FailSafe();//异常保护
+}

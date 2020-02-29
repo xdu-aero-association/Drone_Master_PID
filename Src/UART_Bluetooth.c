@@ -6,6 +6,7 @@
 	联系邮箱：2436559745@qq.com
 */
 #include "Control.h"
+#include "Advanced.h"
 #include "struct_all.h"
 
 /******************************************************************************
@@ -110,12 +111,20 @@ void Send_Data_Back(void)
 功    能：	Bluetooth发送数据包
 *******************************************************************************/
 void Bluetooth_Send_TX(uint8_t * tx_buf, uint8_t len)
-{		
-	//NRF24L01_Set_TX();
-	//设置为发送模式
-	//NRF_Write_Buf(WR_TX_PLOAD, tx_buf, len);//装载数据
+{
 	HAL_UART_Transmit(&huart2, tx_buf, sizeof(tx_buf), 0xffff);
 }
+
+/******************************************************************************
+函数原型：	void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+功    能：	UART2中断
+*******************************************************************************/
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	//HAL_UART_Transmit(&huart2, Bluetooth_RXDATA, 1, 100);    // 把收到的字节原样发送出去(调试的时候可能需要)
+	HAL_UART_Receive_IT(&huart2, Bluetooth_RXDATA, 1);       // 重新注册一次，要不然下次收不到了
+}
+
 /******************************************************************************
 函数原型：	void Bluetooth_Connect(void)
 功    能：	Bluetooth连接函数
@@ -135,6 +144,7 @@ void Bluetooth_Connect(void)//1KHZ
 	if(Bluetooth_Erro>=1000)   //1s未接收蓝牙数据 ,锁定四轴，电机停转，防止意外发生
 	{
 		Bluetooth_Erro = 1;
+		//FailSafe();
 		Rc_Lock=1;  //上锁
 	}
 	

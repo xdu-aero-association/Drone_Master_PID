@@ -291,7 +291,7 @@ uint8_t InitMPU6050(void)
 		return 0;
 	}
 	
-	PrintString("\r\n MPU6050  正常！");
+	//PrintString("\r\n MPU6050  正常！");
 	Single_WriteI2C(PWR_MGMT_1, 0x00);	//电源管理，典型值：0x00，正常模式
 	I2C_delay(20000); //约2.5ms延时
 	Single_WriteI2C(SMPLRT_DIV, 0x00);	//陀螺仪采样率，典型值：0x00，不分频（8KHZ）
@@ -303,7 +303,7 @@ uint8_t InitMPU6050(void)
 	Single_WriteI2C(ACCEL_CONFIG, 0x1F);//加速计自检、测量范围及高通滤波频率，典型值：0x1F(不自检，16G)
 	I2C_delay(20000);
 	
-	PrintString("\r\n MPU6050  初始化完成！");
+	//PrintString("\r\n MPU6050  初始化完成！");
 	return 1;
 }
 /******************************************************************************
@@ -423,15 +423,16 @@ void MPU6050_Compose(void)
 函数原型：	void MPU6050_Printf(void)
 功    能：	输出MPU6050的原始数据
 *******************************************************************************/ 
+/*
 void MPU6050_Printf(void)
 {
-	PrintString("\r\nMPU6050 acc:\r\n");
+	//PrintString("\r\nMPU6050 acc:\r\n");
 	PrintS16(acc.x);
 	PrintS16(acc.y);
 	PrintS16(acc.z);
-	PrintString("\r\nMPU6050 gyro\r\n");
+	//PrintString("\r\nMPU6050 gyro\r\n");
 	PrintS16(gyro.x);
 	PrintS16(gyro.y);
 	PrintS16(gyro.z);
 }
-
+*/

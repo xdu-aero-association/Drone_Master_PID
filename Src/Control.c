@@ -73,7 +73,7 @@ void RC_LOCK(void)
 	else
 		count2 = 0;
 	
-	if(count2>100 )//&& Rc_Lock)//上锁状态才能校正
+	if(count2>100 && Rc_Lock)//上锁状态才能校正
 	{
 		count2=0;
 		Do_GYRO_Offset();//左手油门手的摇杆打向左下角，右手摇杆俯仰方向拉到最底，校正陀螺仪
