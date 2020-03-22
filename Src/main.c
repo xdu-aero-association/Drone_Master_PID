@@ -102,7 +102,7 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-	BSP_Int();	//硬件初始化
+	BSP_Int();	//硬件�?始化
 	
   /* USER CODE END 2 */
 

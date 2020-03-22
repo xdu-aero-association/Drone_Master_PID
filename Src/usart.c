@@ -24,8 +24,8 @@
 uint8_t TxCount=0;
 uint8_t Count=0;
 
-//static uint8_t TxBuff[256];	//串口发送缓冲区
-//static uint8_t RxBuffer[50];//串口接收缓冲区
+//static uint8_t TxBuff[256];	//串�?��?��?缓冲区
+//static uint8_t RxBuffer[50];//串�?�接收缓冲区
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart2;
