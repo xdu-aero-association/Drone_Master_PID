@@ -22,10 +22,10 @@ uint8_t Bsp_Int_Ok = 0;
 void BSP_Int(void)
 {
 	LED_ON_OFF();//LED闪烁
-	TIM1_Init();//TIM1四个通道的PWM初始化
+	TIM_Init();//TIM1四个通道的PWM初始化
 	ADC1_Init();//ADC及DMA初始化
 	//这里加入蓝牙串口通讯
-
+	
 	while( InitMPU6050()!=1 );//若MPU6050初始化不成功，则程序不向下运行
 	Calculate_FilteringCoefficient(0.001f,10.f);//计算IIR滤波器参数
 
