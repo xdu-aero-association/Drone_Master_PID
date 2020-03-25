@@ -363,7 +363,6 @@ void MPU6050_Offset(void)
 			EEPROM_SAVE_ACC_OFFSET();
 			
 		}
-		LED_ON();
 	}
 	
 	if(GYRO_Offset)
@@ -398,7 +397,6 @@ void MPU6050_Offset(void)
 			GYRO_Offset = 0;
 			EEPROM_SAVE_GYRO_OFFSET();
 		}
-		LED_ON();
 	}
 }
 
